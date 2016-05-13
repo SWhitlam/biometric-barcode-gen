@@ -2,6 +2,10 @@
   "name": "biometric-barcode-gen",
   "version": "0.0.0",
   "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": "4.2"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "test": "mocha"
