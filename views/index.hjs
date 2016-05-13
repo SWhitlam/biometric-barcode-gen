@@ -6,6 +6,20 @@
   </head>
   <body>
     <h1>{{ title }}</h1>
-    <p>Welcome to {{ title }}</p>
+    <h2>Sample Barcodes</h2>
+    <h3>Mr John Smith - 1/2/1998 - 4 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=John%20Smith&dob=1/2/1998&cols=4">
+    <h3>Mrs Joan Smith - 4/2/1980 - 5 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mrs&fullname=Joan%20Smith&dob=4/2/1980&cols=5">
+    <h3>Mr John Smith - 1/2/1998 - 6 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=John%20Smith&dob=1/2/1998&cols=6">
+    <h3>Mr John Smith - 1/2/1998 - 7 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=John%20Smith&dob=1/2/1998&cols=7">
+    <h3>Mr John Smith - 1/2/1998 - 8 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=John%20Smith&dob=1/2/1998&cols=8">
+    <h3>Mr John Smith - 1/2/1998 - 8 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=John%20Smith&dob=1/2/1998&cols=8">
+    <h3>Mr Very very very long name Smith - 1/2/1998 - 8 columns</h3>
+    <img src="/barcode?cidid=123456&title=Mr&fullname=Very very very long name Smith&dob=1/2/1998&cols=8">
   </body>
 </html>

@@ -3,14 +3,11 @@ var config = require('../config.js');
 var pad = require('node-string-pad');
 var builder = require('xmlbuilder');
 var bwipjs = require('bwip-js');
-
 var BarcodeService = {};
 
 BarcodeService.generateBarcode = function (params, callback) {
-
     buildBarcodeFromParams(params, function (barcode) {
         generateXMLPayload(barcode, function (xml) {
-            
             bwipjs.toBuffer({
                 bcid: 'pdf417',
                 text: xml,
@@ -22,14 +19,13 @@ BarcodeService.generateBarcode = function (params, callback) {
                 } else {
                     return callback(null, png);
                 }
-
             });
         });
     });
 }
 
 var buildBarcodeFromParams = function (params, callback) {
-        //TODO field validation
+        //TODO: field validation
     
         var barcode = new Barcode(params);
         barcode.setBC(config.rules.chargableIIN + pad(params.cidid, 12, '0'));
@@ -42,8 +38,7 @@ var buildBarcodeFromParams = function (params, callback) {
         barcode.PO = canPhotoBeOverridden(params.dob);
         barcode.FP = fingerprintsRequired(params.dob);
         barcode.SG = signatureRequired(params.dob);
-        
-        barcode.RR =responsibleAdultRequired(params.dob);
+        barcode.RR = responsibleAdultRequired(params.dob);
         
         // TODO: if RA required then add details 
         
@@ -54,13 +49,13 @@ var generateXMLPayload = function (barcode, callback) {
         var xml = builder.begin();
         xml.ele('BC',barcode.BC);
         var daElem = xml.ele('DA',barcode.BC);
-        daElem.ele('TY', barcode.TY);
+        daElem.ele('TY',barcode.TY);
         daElem.ele('VE',barcode.VE);
         daElem.ele('TT',barcode.TT);
-        daElem.ele('FN', barcode.FN);
+        daElem.ele('FN',barcode.FN);
         daElem.ele('DB',barcode.DB);
         daElem.ele('PH',barcode.PH);
-        daElem.ele('PO', barcode.PO);
+        daElem.ele('PO',barcode.PO);
         daElem.ele('FP',barcode.FP);
         daElem.ele('SG',barcode.SG);
         daElem.ele('RR',barcode.RR);
@@ -69,19 +64,13 @@ var generateXMLPayload = function (barcode, callback) {
         
         xml.ele('HA', barcode.HA());
         
-       var result = xml.end({ 
-        pretty: true,
-        indent: '  ',
-        newline: '\n',
-        allowEmpty: true
-        });
-        
-        console.log(result);
-       
+       var result = xml.end({pretty: true,indent: '  ',newline: '\n',allowEmpty: true});
        callback(result);
         
 }
 
+
+//TODO: add logic for business rules
 var canPhotoBeOverridden = function(DoB) {
     return 'Y';
 }

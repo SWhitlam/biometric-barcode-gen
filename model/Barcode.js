@@ -14,10 +14,6 @@ Barcode.prototype.HA = function() {
     return "aHashCode";
 }
 
-Barcode.prototype.getBC = function() {
-    return this.BC;
-}
-
 Barcode.prototype.setBC = function(BC){
     this.BC = BC + calculateCheckDigit();
 }
